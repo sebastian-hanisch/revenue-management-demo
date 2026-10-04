@@ -1,6 +1,6 @@
 # Buchungs-/Slot-Vergabe: Wer bekommt den letzten Container-Slot? – Streamlit-Demo
 
-*(noch nicht deployed)*
+**[→ Demo live ausprobieren](https://sebastianhanisch-revenue-management-demo.streamlit.app/)**
 
 Interaktive Fall-Demo zum **Revenue Management** einer Reederei: Container-Slots sind knapp, **Spot-Fracht** (günstig) bucht meist früh, **Premium-Fracht** (teuer) meist erst kurz vor Abfahrt. Wer früh
 jede günstige Anfrage annimmt, hat am Ende keinen Platz mehr für die teuren Spätbucher – der klassische **Klassenschutz**-Effekt der Revenue-Management-Literatur (Littlewood 1972). Die Demo beantwortet:
@@ -15,7 +15,7 @@ Vehikel: eine Abfahrt mit C Container-Slots, N diskrete Buchungsgelegenheiten vo
 
 Bei knapper Kapazität (Preset „Knappe Kapazität", 4 Slots) kostet reines FCFS (annehmen, solange Platz ist, ohne auf die Preisklasse zu achten) **über ein Drittel** (36,0 %) des erreichbaren Ertrags – der stärkste
 Heuristik-Abstand der ganzen Seefracht-Linie. Die eigentliche Überraschung: Littlewoods klassische, 1972 hergeleitete geschlossene Schutzformel kommt dabei verblüffend nah ans echte DP-Optimum
-(-0,1 % bis -1,6 % über alle getesteten Einstellungen) – ein Lehrbuchergebnis bestätigt sich empirisch. Die Kernbotschaft dieser Demo ist deshalb ungewöhnlich für die Seefracht-Linie: **man braucht die
+(in den fünf Presets -0,06 % bis -1,29 %; über das gesamte Reglerraster bei 30 Epochen zwischen etwa +0,1 % und -5 %, am weitesten bei knapper Kapazität und premium-armer Nachfrage) – ein Lehrbuchergebnis bestätigt sich empirisch. Die Kernbotschaft dieser Demo ist deshalb ungewöhnlich für die Seefracht-Linie: **man braucht die
 schwere Rückwärts-Induktion fast nie**, die einfache Formel reicht.
 
 ## Modell

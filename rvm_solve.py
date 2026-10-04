@@ -8,7 +8,7 @@ Abweichungen), nicht neu geschrieben. Nur Standardbibliothek, kein scipy noetig.
 
 Wichtig fuer die App (siehe Plan Abschnitt 3 und 15): Littlewood ist die operative Empfehlung der
 Hauptansicht, NICHT die DP-Politik - Littlewood kommt empirisch verblueffend nah ans DP-Optimum
-(-0,1 % bis -1,6 % ueber alle getesteten Presets, siehe ERGEBNIS.md), DP dient nur als Referenz im
+(-0,06 % bis -1,29 % in den fuenf Presets, bis etwa -5 % im gesamten Reglerraster), DP dient nur als Referenz im
 Exakt-Tab. DP-Optimalitaet gilt nur im ERWARTUNGSWERT ueber die Zukunftsunsicherheit an jedem
 Entscheidungspunkt, nicht pfadweise fuer eine einzelne realisierte Sequenz - siehe check.py Punkt 3."""
 

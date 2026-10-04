@@ -155,7 +155,7 @@ Littlewood-Aufschlag gegen das DP-Optimum über drei Kapazitätsstufen um den ei
 st.plotly_chart(VZ.capacity_sweep_figure(cap_stats, capacity), width="stretch", key="main_capacity_chart")
 st.caption(f"Basis: {C.SAMPLE_INSTANCES} Sequenzen derselben Einstellung je Kapazitätsstufe (nicht der eingestellte "
           f"Seed). Rechenzeit gemessen: DP + Littlewood-Formel zusammen brauchen selbst beim größten Regler-Stand "
-          f"({C.N_EPOCHS_RANGE[1]} Epochen, {C.CAPACITY_RANGE[1]} Slots) deutlich unter 1 ms - ohne Knopf möglich, "
+          f"({C.N_EPOCHS_RANGE[1]} Epochen, {C.CAPACITY_RANGE[1]} Slots) nur etwa 1 ms (Entwicklungsrechner, maschinenabhängig) - ohne Knopf möglich, "
           f"live bei jedem Reglerzug.")
 
 st.markdown(f"**Urteil in drei Zuständen** (gepaarte Differenz über {C.SAMPLE_INSTANCES} Stichprobensequenzen "
@@ -204,7 +204,7 @@ Buchungsgelegenheiten (Epochen); je Epoche kommt mit Wahrscheinlichkeit π_hi(n)
 (Spot früh häufiger, Premium spät häufiger). Jede Anfrage muss **sofort** angenommen oder abgelehnt werden (online), ohne die Zukunft zu kennen.
 
 **Littlewoods Schutzformel und warum sie fast reicht.** Spot wird nur angenommen, wenn die verbleibende Kapazität über dem Schutzniveau für erwartete künftige Premium-Nachfrage liegt (geschlossene
-Formel, 1972). Sie kommt empirisch verblüffend nah ans echte DP-Optimum (-0,1 % bis -1,6 % über alle getesteten Einstellungen) - die eigentliche Botschaft dieser Demo: man braucht fast nie die volle
+Formel, 1972). Sie kommt empirisch verblüffend nah ans echte DP-Optimum (in den fünf Presets -0,06 % bis -1,29 %; über das gesamte Reglerraster bei 30 Epochen zwischen etwa +0,1 % und -5 %, am weitesten bei knapper Kapazität und premium-armer Nachfrage) - die eigentliche Botschaft dieser Demo: man braucht fast nie die volle
 Rückwärts-Induktion.
 
 **Warum FCFS bei knapper Kapazität und großem Preisunterschied am meisten verliert.** FCFS füllt die Slots blind mit den früh eintreffenden Spot-Buchungen und muss danach jede Premium-Anfrage
