@@ -68,7 +68,7 @@ reproduziert `seefracht-planung/messreihe_revenue/sweep_data.json` **exakt** (ni
 
 ## Tests
 
-`python -m pytest tests/ -v` – 124 Tests, rund 13 Sekunden. Zusammensetzung:
+`python -m pytest tests/ -v` – 130 Tests, rund 23 Sekunden. Zusammensetzung:
 
 - **Szenario** (`test_scenario.py`): Determinismus, Struktur der Nachfragekurve/Sequenz, Nachfrage-Trend (Premium steigt, Spot fällt), Randfälle (0/1 Epochen, extreme π-Werte gegen das
   Sicherheitsnetz der Wahrscheinlichkeits-Clamps).
@@ -80,6 +80,7 @@ reproduziert `seefracht-planung/messreihe_revenue/sweep_data.json` **exakt** (ni
 - **Regler** (`test_presets.py`): Permalink-Parsing/-Klemmen/-Runden (inkl. Stufen-Regler auf die nächste Stufe), Presets innerhalb ihrer eigenen Grenzen, Seeds außerhalb der Population.
 - **Presets** (`test_stories.py`, `test_preset_stories.py`): jedes einzelne Kriterium an künstlichen Werten, die genau an seiner Schwelle kippen; echte Presets erfüllen Population- UND
   Sequenz-Kriterien; Reproduktion von `sweep_data.json` auf ±0,5 Prozentpunkte.
+- **Unabhängige Orakel** (`test_oracle_rvm.py`): DP-Wertfunktion gegen den Bellman-LP (`scipy.optimize.linprog`) und gegen Brute Force über alle Markov-Politiken, Littlewood-Schutzniveaus gegen exakte Bruch-Arithmetik, exakter Erwartungsertrag jeder Politik per Markov-Kette (DP erreicht `V[0][C]`, FCFS/Littlewood liegen darunter), Ertrag der fünf Preset-Sequenzen unabhängig nachgespielt. Exakt gerechnet liegt FCFS im Standard-Preset bei −14,7 % (Population aus 600 Stichproben: −15,3 %), bei knapper Kapazität bei −35,4 % (−36,0 %): die Tabellenwerte sind Stichprobenwerte mit etwa ±0,7 Prozentpunkten Unsicherheit.
 - **Figuren** (`test_visualization.py`): Zeitleiste, Kapazitätsvergleich – alle Achsen fest (`fixedrange`).
 - **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–", „€", Emoji ab), Randfälle (Kapazität 0, großer Preisaufschlag).
 - **End-to-End** (`test_app.py`, AppTest): Skelett und Footer, jedes Preset, Permalink, alle Regler an Min und Max, die bedingte Meldung in beiden Zuständen, Urteil in allen Zuständen,
