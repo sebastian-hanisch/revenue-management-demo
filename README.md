@@ -13,7 +13,7 @@ Vehikel: eine Abfahrt mit C Container-Slots, N diskrete Buchungsgelegenheiten vo
 
 ## Warum dieses Problem
 
-Bei knapper Kapazität und großem Preisunterschied kostet reines FCFS (annehmen, solange Platz ist, ohne auf die Preisklasse zu achten) bis zu **ein Drittel** des erreichbaren Ertrags – der stärkste
+Bei knapper Kapazität (Preset „Knappe Kapazität", 4 Slots) kostet reines FCFS (annehmen, solange Platz ist, ohne auf die Preisklasse zu achten) **über ein Drittel** (36,0 %) des erreichbaren Ertrags – der stärkste
 Heuristik-Abstand der ganzen Seefracht-Linie. Die eigentliche Überraschung: Littlewoods klassische, 1972 hergeleitete geschlossene Schutzformel kommt dabei verblüffend nah ans echte DP-Optimum
 (-0,1 % bis -1,6 % über alle getesteten Einstellungen) – ein Lehrbuchergebnis bestätigt sich empirisch. Die Kernbotschaft dieser Demo ist deshalb ungewöhnlich für die Seefracht-Linie: **man braucht die
 schwere Rückwärts-Induktion fast nie**, die einfache Formel reicht.
@@ -127,3 +127,5 @@ Tests: `python -m pytest tests/ -v`. Preset-Abstimmung: `python tools/tune_prese
 ---
 
 Gebaut mit Streamlit, Plotly und fpdf2.
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zum Thema: [Seefracht optimieren](https://sebastianhanisch.net/seefracht-optimierung.html).

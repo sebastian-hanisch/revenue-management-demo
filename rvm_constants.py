@@ -39,10 +39,10 @@ POLICY_DESCRIPTIONS = {
     POLICY_FCFS: "Nimmt jede Anfrage an, solange ein Slot frei ist, ohne auf die Preisklasse zu achten. Die "
                  "Kontrast-Baseline: zeigt, wie teuer blinde Annahme wird.",
     POLICY_LITTLEWOOD: "Geschlossene Schutzformel (Littlewood 1972): Spot wird nur angenommen, wenn die "
-                       "verbleibende Kapazitaet ueber dem Schutzniveau fuer erwartete kuenftige Premium-Nachfrage "
+                       "verbleibende Kapazität über dem Schutzniveau für erwartete künftige Premium-Nachfrage "
                        "liegt. Die operative Empfehlung der Hauptansicht - praktisch optimal, ohne "
-                       "Rueckwaerts-Induktion.",
-    POLICY_DP: "Rueckwaerts-Induktion ueber (Epoche, Restkapazitaet) - das echte Online-Optimum in diesem "
+                       "Rückwärts-Induktion.",
+    POLICY_DP: "Rückwärts-Induktion über (Epoche, Restkapazität) - das echte Online-Optimum in diesem "
               "Modell. Referenz im Exakt-Tab, beweist wie nah Littlewood herankommt.",
 }
 EXACT_TAB_LABEL = "🎯 DP (exakt)"

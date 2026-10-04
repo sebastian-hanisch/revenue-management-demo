@@ -30,7 +30,7 @@ def _pct(v):
 
 def verdict_text(v):
     if v.n == 0:
-        return "Kein Vergleich moeglich: keine Stichprobensequenz verfuegbar."
+        return "Kein Vergleich möglich: keine Stichprobensequenz verfügbar."
     if v.kind == "better":
         return f"Littlewood gegen FCFS: im Mittel {abs(v.diff):.2f} mehr Ertrag je Sequenz (Differenz {v.diff:+.2f}, Standardfehler {v.se:.2f}, n={v.n})."
     if v.kind == "worse":
@@ -128,9 +128,9 @@ def generate_rvm_pdf(capacity, n_epochs, r_hi, r_lo, demand_mix, seed, shown, st
     heading("Hinweise zum Modell")
     pdf.set_font("Helvetica", "", 9)
     for text in [
-        "Zwei Frachtklassen: Spot (niedriger Preis, bucht ueberwiegend frueh) und Premium (hoher Preis, bucht ueberwiegend spaet) bewerben sich laufend um Container-Slots. Jede Anfrage muss sofort angenommen oder abgelehnt werden (online), ohne die Zukunft zu kennen.",
-        "Littlewoods Regel (1972): Spot wird nur angenommen, wenn die verbleibende Kapazitaet ueber dem Schutzniveau fuer erwartete kuenftige Premium-Nachfrage liegt - eine geschlossene Formel, keine Rueckwaerts-Induktion.",
-        "DP (Rueckwaerts-Induktion ueber Epoche und Restkapazitaet) ist das echte Online-Optimum, aber nur im ERWARTUNGSWERT an jedem Entscheidungspunkt - nicht pfadweise fuer eine einzelne Sequenz optimal.",
+        "Zwei Frachtklassen: Spot (niedriger Preis, bucht überwiegend früh) und Premium (hoher Preis, bucht überwiegend spät) bewerben sich laufend um Container-Slots. Jede Anfrage muss sofort angenommen oder abgelehnt werden (online), ohne die Zukunft zu kennen.",
+        "Littlewoods Regel (1972): Spot wird nur angenommen, wenn die verbleibende Kapazität über dem Schutzniveau für erwartete künftige Premium-Nachfrage liegt - eine geschlossene Formel, keine Rückwärts-Induktion.",
+        "DP (Rückwärts-Induktion über Epoche und Restkapazität) ist das echte Online-Optimum, aber nur im ERWARTUNGSWERT an jedem Entscheidungspunkt - nicht pfadweise für eine einzelne Sequenz optimal.",
         "Kein No-Show/Overbooking, nur zwei Frachtklassen, Nachfragewahrscheinlichkeiten exakt bekannt (kein Prognosefehler) - bewusste Vereinfachungen, um den Klassenschutz-Effekt sauber zu isolieren.",
     ]:
         pdf.multi_cell(0, 5, pdf_text("- " + text), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
