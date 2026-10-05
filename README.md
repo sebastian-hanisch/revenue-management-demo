@@ -6,14 +6,14 @@ Interaktive Fall-Demo zum **Revenue Management** einer Reederei: Container-Slots
 jede günstige Anfrage annimmt, hat am Ende keinen Platz mehr für die teuren Spätbucher – der klassische **Klassenschutz**-Effekt der Revenue-Management-Literatur (Littlewood 1972). Die Demo beantwortet:
 **Wie viel Ertrag lässt reines Windhundprinzip liegen – und reicht Littlewoods einfache, 1972 hergeleitete Formel, um das fast zu vermeiden?**
 
-Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning", **Welle 4 (letzte) der Seefracht-Linie** (Schwesterlinie zur Hafen-Linie, nach `leercontainer-demo`,
-`mehrhafenstau-demo`, `slow-steaming-demo`). Anders als die ersten drei Wellen ist diese die einzige mit einer „baut aus"-Kante: sie hebt `freight_demo`s stillschweigende Annahme auf, dass die zu
+Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning“, **Welle 4 (letzte) der Seefracht-Linie** (Schwesterlinie zur Hafen-Linie, nach `leercontainer-demo`,
+`mehrhafenstau-demo`, `slow-steaming-demo`). Anders als die ersten drei Wellen ist diese die einzige mit einer „baut aus“-Kante: sie hebt `freight_demo`s stillschweigende Annahme auf, dass die zu
 konsolidierenden Sendungen schon feststehen – hier wird erst entschieden, welche Buchungen überhaupt angenommen werden (die angenommenen Buchungen wären die Sendungen, die `freight_demo` konsolidiert).
 Vehikel: eine Abfahrt mit C Container-Slots, N diskrete Buchungsgelegenheiten vor Abfahrt.
 
 ## Warum dieses Problem
 
-Bei knapper Kapazität (Preset „Knappe Kapazität", 4 Slots) kostet reines FCFS (annehmen, solange Platz ist, ohne auf die Preisklasse zu achten) **über ein Drittel** (36,0 %) des erreichbaren Ertrags – der stärkste
+Bei knapper Kapazität (Preset „Knappe Kapazität“, 4 Slots) kostet reines FCFS (annehmen, solange Platz ist, ohne auf die Preisklasse zu achten) **über ein Drittel** (36,0 %) des erreichbaren Ertrags – der stärkste
 Heuristik-Abstand der ganzen Seefracht-Linie. Die eigentliche Überraschung: Littlewoods klassische, 1972 hergeleitete geschlossene Schutzformel kommt dabei verblüffend nah ans echte DP-Optimum
 (in den fünf Presets -0,06 % bis -1,29 %; über das gesamte Reglerraster bei 30 Epochen zwischen etwa +0,1 % und -5 %, am weitesten bei knapper Kapazität und premium-armer Nachfrage) – ein Lehrbuchergebnis bestätigt sich empirisch. Die Kernbotschaft dieser Demo ist deshalb ungewöhnlich für die Seefracht-Linie: **man braucht die
 schwere Rückwärts-Induktion fast nie**, die einfache Formel reicht.
@@ -23,7 +23,7 @@ schwere Rückwärts-Induktion fast nie**, die einfache Formel reicht.
 Zwei Frachtklassen: **Spot** (niedriger Preis r_lo, bucht überwiegend früh) und **Premium** (hoher Preis r_hi > r_lo, bucht überwiegend spät). N diskrete Buchungsgelegenheiten (Standardformulierung der
 Revenue-Management-Literatur); je Epoche kommt mit Wahrscheinlichkeit π_hi(n) eine Premium-Anfrage, mit π_lo(n) eine Spot-Anfrage, sonst keine – beide Wahrscheinlichkeiten wandern über die Epochen
 (Spot früh häufiger, Premium spät häufiger). Jede Anfrage muss **sofort** angenommen oder abgelehnt werden (online), ohne die Zukunft zu kennen. Kein No-Show/Overbooking, nur zwei Frachtklassen,
-Nachfragewahrscheinlichkeiten exakt bekannt (kein Prognosefehler in Version 1). Formal im Expander „📐 Mathematische Formulierung" der App.
+Nachfragewahrscheinlichkeiten exakt bekannt (kein Prognosefehler in Version 1). Formal im Expander „📐 Mathematische Formulierung“ der App.
 
 ## Methodik – drei Bausteine statt einer Reglerfamilie
 
@@ -34,7 +34,7 @@ Wie bei den vorherigen Wellen sind das drei Bausteine, kein stetiger Regler – 
   Rückwärts-Induktion.
 - **🎯 DP (exakt)**: Rückwärts-Induktion über (Epoche, Restkapazität) – das echte Online-Optimum, aber nur die **Referenz im Exakt-Tab**, beweist wie nah Littlewood herankommt.
 
-Zusätzlich ein **Hindsight-Orakel** (rückblickend beste Auswahl, keine online umsetzbare Politik) als vierte, sekundäre Kurve im Vergleichs-Tab („Wert von Information").
+Zusätzlich ein **Hindsight-Orakel** (rückblickend beste Auswahl, keine online umsetzbare Politik) als vierte, sekundäre Kurve im Vergleichs-Tab („Wert von Information“).
 
 **Kernlogik unverändert übernommen**: `rvm_scenario.py` (`make_periods`, `draw_sequence`) und `rvm_solve.py` (`dp_optimal`, `dp_accept`, `remaining_hi_dists`, `littlewood_protection_levels`,
 `simulate`, `hindsight_oracle`) sind direkt aus `seefracht-planung/messreihe_revenue/revenue.py` übernommen – bereits gegen eine Handinstanz und mehrere Konsistenzchecks verifiziert
@@ -64,7 +64,7 @@ reproduziert `seefracht-planung/messreihe_revenue/sweep_data.json` **exakt** (ni
 - **Nachfragekurven synthetisch**, nicht an echten Buchungsdaten kalibriert.
 - **Keine dynamische Preisanpassung** – nur Annahme/Ablehnung, keine Preisänderung.
 - DP-Optimalität gilt nur **im Erwartungswert** über die Zukunftsunsicherheit an jedem Entscheidungspunkt, nicht pfadweise für eine einzelne realisierte Sequenz – eine ungünstige Zufallssequenz kann
-  eine „suboptimale" Politik im Einzelfall trotzdem besser aussehen lassen als DP.
+  eine „suboptimale“ Politik im Einzelfall trotzdem besser aussehen lassen als DP.
 
 ## Tests
 
@@ -82,7 +82,7 @@ reproduziert `seefracht-planung/messreihe_revenue/sweep_data.json` **exakt** (ni
   Sequenz-Kriterien; Reproduktion von `sweep_data.json` auf ±0,5 Prozentpunkte.
 - **Unabhängige Orakel** (`test_oracle_rvm.py`): DP-Wertfunktion gegen den Bellman-LP (`scipy.optimize.linprog`) und gegen Brute Force über alle Markov-Politiken, Littlewood-Schutzniveaus gegen exakte Bruch-Arithmetik, exakter Erwartungsertrag jeder Politik per Markov-Kette (DP erreicht `V[0][C]`, FCFS/Littlewood liegen darunter), Ertrag der fünf Preset-Sequenzen unabhängig nachgespielt. Exakt gerechnet liegt FCFS im Standard-Preset bei −14,7 % (Population aus 600 Stichproben: −15,3 %), bei knapper Kapazität bei −35,4 % (−36,0 %): die Tabellenwerte sind Stichprobenwerte mit etwa ±0,7 Prozentpunkten Unsicherheit.
 - **Figuren** (`test_visualization.py`): Zeitleiste, Kapazitätsvergleich – alle Achsen fest (`fixedrange`).
-- **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–", „€", Emoji ab), Randfälle (Kapazität 0, großer Preisaufschlag).
+- **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–“, „€“, Emoji ab), Randfälle (Kapazität 0, großer Preisaufschlag).
 - **End-to-End** (`test_app.py`, AppTest): Skelett und Footer, jedes Preset, Permalink, alle Regler an Min und Max, die bedingte Meldung in beiden Zuständen, Urteil in allen Zuständen,
   Vergleichstabelle, PDF, Texte, dass Littlewood (nicht DP) als Empfehlung im Text steht.
 

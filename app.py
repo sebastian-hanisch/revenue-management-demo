@@ -67,7 +67,7 @@ st.markdown(
     """
 Eine Reederei nimmt Buchungen über Wochen hinweg an, aber die Container-Slots sind knapp: **Spot-Fracht** (günstig) bucht meist früh, **Premium-Fracht** (teuer) meist erst kurz vor Abfahrt. Wer früh
 jede Anfrage annimmt, hat am Ende keinen Platz mehr für die teuren Spätbucher - der klassische **Klassenschutz**-Effekt der Revenue-Management-Literatur (Littlewood 1972). Wie das Modell funktioniert,
-steht im Expander „Wie funktioniert diese Demo?" weiter unten, die formale Beschreibung im Expander „📐 Mathematische Formulierung".
+steht im Expander „Wie funktioniert diese Demo?“ weiter unten, die formale Beschreibung im Expander „📐 Mathematische Formulierung“.
 """
 )
 
