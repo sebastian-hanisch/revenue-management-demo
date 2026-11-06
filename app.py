@@ -71,6 +71,17 @@ steht im Expander „Wie funktioniert diese Demo?“ weiter unten, die formale B
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/buchungs-slot-vergabe-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Eine Reederei nimmt Buchungen über Wochen an, aber die Container-Plätze auf dem Schiff sind knapp. Günstige **Spot-Fracht** bucht meist früh, teure **Premium-Fracht** erst kurz vor der Abfahrt. Jede Anfrage muss sofort angenommen oder abgelehnt werden. Wer früh jede Anfrage annimmt, hat am Ende keinen Platz mehr für die teuren Spätbucher. Die Demo vergleicht drei Regeln: Annahme nach Eingang, eine einfache Schutzformel, die Plätze für Premium-Fracht zurückhält, und die genaue Rechnung per dynamischer Programmierung. Gezeigt wird, wie viel Einnahmen die erste Regel verschenkt und wie nah die einfache Schutzformel an die genaue Rechnung herankommt.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/buchungs-slot-vergabe-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
     "Standard": "Der Grundfall: FCFS lässt bereits spürbar Ertrag liegen.",
@@ -221,6 +232,24 @@ ablehnen - siehe die Zeitleiste oben und den Kernabschnitt (die Lücke lebt an d
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/buchungs-slot-vergabe-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind eine Zahl knapper Slots, zwei Preise und die Wahrscheinlichkeiten, mit denen in jeder Epoche eine Anfrage jeder Klasse eintrifft. Gesucht ist eine Annahmeregel, die den erwarteten Gesamtertrag möglichst groß macht.
+
+| Symbol | Bedeutung |
+|---|---|
+| $n$, $N$ | Epoche bzw. Zahl der Buchungsgelegenheiten vor der Abfahrt |
+| $c$, $C$ | freie Slots in der Epoche bzw. Kapazität der Abfahrt |
+| $r_{hi}$, $r_{lo}$ | Preis der Premium- bzw. der Spot-Fracht |
+| $\pi_{hi}(n)$, $\pi_{lo}(n)$ | Wahrscheinlichkeit einer Premium- bzw. Spot-Anfrage in Epoche $n$ |
+| $V(n, c)$ | optimaler erwarteter Ertrag ab Epoche $n$ bei $c$ freien Slots |
+| $y^\ast(n)$ | Schutzniveau nach Littlewood: so viele Slots bleiben für Premium reserviert |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/buchungs-slot-vergabe-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Epochen und Ankünfte.** Epoche $n \in \{0, \dots, N-1\}$; mit Wahrscheinlichkeit $\pi_{hi}(n)$ trifft eine Premium-Anfrage ein (Preis $r_{hi}$), mit $\pi_{lo}(n)$ eine Spot-Anfrage (Preis $r_{lo}$),
