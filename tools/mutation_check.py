@@ -50,7 +50,7 @@ MUTANTS = [
     ("rvm_stories.py", "return [(fg <= -10.0,", "return [(fg <= -9.0,"),
     ("rvm_stories.py", "return [(fg <= -25.0,", "return [(fg <= -24.0,"),
     ("rvm_stories.py", "return [(fg >= -3.0,", "return [(fg >= -4.0,"),
-    ("rvm_stories.py", 'return [(fg >= -5.0, f"FCFS-Aufschlag >= -5 %: {_pct(fg)}")]', 'return [(fg >= -6.0, f"FCFS-Aufschlag >= -5 %: {_pct(fg)}")]'),
+    ("rvm_stories.py", 'return [(fg >= -5.0, f"FCFS-Abstand >= -5 %: {_pct(fg)}")]', 'return [(fg >= -6.0, f"FCFS-Abstand >= -5 %: {_pct(fg)}")]'),
 ]
 
 

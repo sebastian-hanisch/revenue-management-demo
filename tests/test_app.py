@@ -80,7 +80,7 @@ def test_skeleton_and_footer():
     presets = [b.label for b in at.button if b.label in C.PRESETS]
     assert presets == list(C.PRESETS) and len(presets) == 5 and all(len(n) <= 22 for n in presets)
     assert [s.label for s in at.sidebar.slider] == ["Slots (Kapazität)", "Buchungsfenster (Epochen)"]
-    assert [s.label for s in at.sidebar.select_slider] == ["Premium-Preisaufschlag", "Nachfragemix (Premium/Spot)"]
+    assert [s.label for s in at.sidebar.select_slider] == ["Premium-Preisverhältnis", "Nachfragemix (Premium/Spot)"]
     assert [n.label for n in at.sidebar.number_input] == ["Seed"]
     assert any(b.label == "🎲 Neue Buchungssequenz" for b in at.sidebar.button)
 

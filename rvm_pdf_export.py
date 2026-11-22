@@ -118,9 +118,9 @@ def generate_rvm_pdf(capacity, n_epochs, r_hi, r_lo, demand_mix, seed, shown, st
 
     keep_together(60)
     heading(f"Population ({stats.n} Stichproben derselben Einstellung, nicht der gezeigte Seed)")
-    pairs([("FCFS-Aufschlag gegen DP", _pct(stats.fcfs_gap_pct)),
-          ("Littlewood-Aufschlag gegen DP", _pct(stats.littlewood_gap_pct)),
-          ("Hindsight-Aufschlag gegen DP", _pct(stats.hindsight_gap_pct))])
+    pairs([("FCFS-Abstand gegen DP", _pct(stats.fcfs_gap_pct)),
+          ("Littlewood-Abstand gegen DP", _pct(stats.littlewood_gap_pct)),
+          ("Hindsight-Abstand gegen DP", _pct(stats.hindsight_gap_pct))])
     note(verdict_text(verdict), 9)
     pdf.ln(3)
 

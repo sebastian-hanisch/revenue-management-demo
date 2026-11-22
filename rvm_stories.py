@@ -22,19 +22,19 @@ def criteria(name, stats):
     """stats: rvm_evaluation.PopulationStats. Rueckgabe: Liste (erfuellt, Text)."""
     fg, lg = stats.fcfs_gap_pct, stats.littlewood_gap_pct
     if name == "Standard":
-        return [(fg <= -10.0, f"FCFS-Aufschlag <= -10 %: {_pct(fg)}"),
-                (lg >= -3.0, f"Littlewood-Aufschlag >= -3 %: {_pct(lg)}")]
+        return [(fg <= -10.0, f"FCFS-Abstand <= -10 %: {_pct(fg)}"),
+                (lg >= -3.0, f"Littlewood-Abstand >= -3 %: {_pct(lg)}")]
     if name == "Knappe Kapazität":
-        return [(fg <= -25.0, f"FCFS-Aufschlag <= -25 %: {_pct(fg)}"),
-                (lg >= -3.0, f"Littlewood-Aufschlag >= -3 %: {_pct(lg)}")]
+        return [(fg <= -25.0, f"FCFS-Abstand <= -25 %: {_pct(fg)}"),
+                (lg >= -3.0, f"Littlewood-Abstand >= -3 %: {_pct(lg)}")]
     if name == "Reichliche Kapazität":
-        return [(fg >= -3.0, f"FCFS-Aufschlag >= -3 %: {_pct(fg)}"),
-                (lg >= -1.0, f"Littlewood-Aufschlag >= -1 %: {_pct(lg)}")]
+        return [(fg >= -3.0, f"FCFS-Abstand >= -3 %: {_pct(fg)}"),
+                (lg >= -1.0, f"Littlewood-Abstand >= -1 %: {_pct(lg)}")]
     if name == "Kleiner Preisaufschlag":
-        return [(fg >= -5.0, f"FCFS-Aufschlag >= -5 %: {_pct(fg)}")]
+        return [(fg >= -5.0, f"FCFS-Abstand >= -5 %: {_pct(fg)}")]
     if name == "Großer Preisaufschlag":
-        return [(fg <= -20.0, f"FCFS-Aufschlag <= -20 %: {_pct(fg)}"),
-                (lg >= -3.0, f"Littlewood-Aufschlag >= -3 %: {_pct(lg)}")]
+        return [(fg <= -20.0, f"FCFS-Abstand <= -20 %: {_pct(fg)}"),
+                (lg >= -3.0, f"Littlewood-Abstand >= -3 %: {_pct(lg)}")]
     raise KeyError(name)
 
 

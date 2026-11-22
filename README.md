@@ -14,7 +14,7 @@ Vehikel: eine Abfahrt mit C Container-Slots, N diskrete Buchungsgelegenheiten vo
 ## Warum dieses Problem
 
 Bei knapper Kapazität (Preset „Knappe Kapazität“, 4 Slots) kostet reines FCFS (annehmen, solange Platz ist, ohne auf die Preisklasse zu achten) **über ein Drittel** (36,0 %) des erreichbaren Ertrags – der stärkste
-Heuristik-Abstand der ganzen Seefracht-Linie. Die eigentliche Überraschung: Littlewoods klassische, 1972 hergeleitete geschlossene Schutzformel kommt dabei verblüffend nah ans echte DP-Optimum
+Heuristik-Abstand der ganzen Seefracht-Linie. Die eigentliche Überraschung: Littlewoods klassische, 1972 hergeleitete geschlossene Regel kommt dabei verblüffend nah ans echte DP-Optimum
 (in den fünf Presets -0,06 % bis -1,29 %; über das gesamte Reglerraster bei 30 Epochen zwischen etwa +0,1 % und -5 %, am weitesten bei knapper Kapazität und premium-armer Nachfrage) – ein Lehrbuchergebnis bestätigt sich empirisch. Die Kernbotschaft dieser Demo ist deshalb ungewöhnlich für die Seefracht-Linie: **man braucht die
 schwere Rückwärts-Induktion fast nie**, die einfache Formel reicht.
 
@@ -30,7 +30,7 @@ Nachfragewahrscheinlichkeiten exakt bekannt (kein Prognosefehler in Version 1). 
 Wie bei den vorherigen Wellen sind das drei Bausteine, kein stetiger Regler – aber anders als dort ist die operative Empfehlung **nicht** der Exakt-Baustein:
 
 - **🐌 FCFS**: nimmt jede Anfrage an, solange ein Slot frei ist, ohne auf die Preisklasse zu achten – die **Kontrast-Baseline**.
-- **📐 Littlewood**: geschlossene Schutzformel (1972), schützt Kapazität für erwartete künftige Premium-Nachfrage – die **operative Empfehlung der Hauptansicht**, praktisch optimal, ohne
+- **📐 Littlewood**: geschlossene Littlewood-Regel (1972), schützt Kapazität für erwartete künftige Premium-Nachfrage – die **operative Empfehlung der Hauptansicht**, praktisch optimal, ohne
   Rückwärts-Induktion.
 - **🎯 DP (exakt)**: Rückwärts-Induktion über (Epoche, Restkapazität) – das echte Online-Optimum, aber nur die **Referenz im Exakt-Tab**, beweist wie nah Littlewood herankommt.
 
@@ -82,7 +82,7 @@ reproduziert `seefracht-planung/messreihe_revenue/sweep_data.json` **exakt** (ni
   Sequenz-Kriterien; Reproduktion von `sweep_data.json` auf ±0,5 Prozentpunkte.
 - **Unabhängige Orakel** (`test_oracle_rvm.py`): DP-Wertfunktion gegen den Bellman-LP (`scipy.optimize.linprog`) und gegen Brute Force über alle Markov-Politiken, Littlewood-Schutzniveaus gegen exakte Bruch-Arithmetik, exakter Erwartungsertrag jeder Politik per Markov-Kette (DP erreicht `V[0][C]`, FCFS/Littlewood liegen darunter), Ertrag der fünf Preset-Sequenzen unabhängig nachgespielt. Exakt gerechnet liegt FCFS im Standard-Preset bei −14,7 % (Population aus 600 Stichproben: −15,3 %), bei knapper Kapazität bei −35,4 % (−36,0 %): die Tabellenwerte sind Stichprobenwerte mit etwa ±0,7 Prozentpunkten Unsicherheit.
 - **Figuren** (`test_visualization.py`): Zeitleiste, Kapazitätsvergleich – alle Achsen fest (`fixedrange`).
-- **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–“, „€“, Emoji ab), Randfälle (Kapazität 0, großer Preisaufschlag).
+- **PDF** (`test_pdf_export.py`): Sonderzeichen-Bereinigung (fpdf2 stürzt bei „–“, „€“, Emoji ab), Randfälle (Kapazität 0, großes Preisverhältnis).
 - **End-to-End** (`test_app.py`, AppTest): Skelett und Footer, jedes Preset, Permalink, alle Regler an Min und Max, die bedingte Meldung in beiden Zuständen, Urteil in allen Zuständen,
   Vergleichstabelle, PDF, Texte, dass Littlewood (nicht DP) als Empfehlung im Text steht.
 

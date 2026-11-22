@@ -26,7 +26,7 @@ def render_metrics(columns, shown):
     gap = E.gap_pct(lit_rev, dp_rev)
     rej_hi_fcfs = E.rejected_hi_count(shown.detail, C.POLICY_FCFS)
     m[0].metric("Ertrag (Littlewood)", fmt_money(lit_rev),
-               help="Ertrag der operativen Empfehlung (Littlewoods Schutzformel) auf der gezeigten Sequenz.")
+               help="Ertrag der operativen Empfehlung (Littlewoods Regel) auf der gezeigten Sequenz.")
     m[1].metric("Ertrag (FCFS)", fmt_money(fcfs_rev), delta=f"{fcfs_rev - lit_rev:+,.0f}".replace(",", "."),
                delta_color="inverse", help="Ertrag der blinden Annahme-Regel (Kontrast-Baseline) auf derselben Sequenz; Delta = FCFS minus Littlewood.")
     m[2].metric("Abstand zum DP-Optimum", fmt_pct(gap),

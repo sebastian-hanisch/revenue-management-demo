@@ -38,7 +38,7 @@ POLICY_SHORT = {POLICY_FCFS: "FCFS", POLICY_LITTLEWOOD: "Littlewood", POLICY_DP:
 POLICY_DESCRIPTIONS = {
     POLICY_FCFS: "Nimmt jede Anfrage an, solange ein Slot frei ist, ohne auf die Preisklasse zu achten. Die "
                  "Kontrast-Baseline: zeigt, wie teuer blinde Annahme wird.",
-    POLICY_LITTLEWOOD: "Geschlossene Schutzformel (Littlewood 1972): Spot wird nur angenommen, wenn die "
+    POLICY_LITTLEWOOD: "Geschlossene Regel (Littlewood-Regel, 1972): Spot wird nur angenommen, wenn die "
                        "verbleibende Kapazität über dem Schutzniveau für erwartete künftige Premium-Nachfrage "
                        "liegt. Die operative Empfehlung der Hauptansicht - praktisch optimal, ohne "
                        "Rückwärts-Induktion.",

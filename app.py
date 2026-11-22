@@ -75,7 +75,7 @@ steht im Expander „Wie funktioniert diese Demo?“ weiter unten, die formale B
 with st.expander("💬 In einfachen Worten"):
     st.markdown(
         """
-Eine Reederei nimmt Buchungen über Wochen an, aber die Container-Plätze auf dem Schiff sind knapp. Günstige **Spot-Fracht** bucht meist früh, teure **Premium-Fracht** erst kurz vor der Abfahrt. Jede Anfrage muss sofort angenommen oder abgelehnt werden. Wer früh jede Anfrage annimmt, hat am Ende keinen Platz mehr für die teuren Spätbucher. Die Demo vergleicht drei Regeln: Annahme nach Eingang, eine einfache Schutzformel, die Plätze für Premium-Fracht zurückhält, und die genaue Rechnung per dynamischer Programmierung. Gezeigt wird, wie viel Einnahmen die erste Regel verschenkt und wie nah die einfache Schutzformel an die genaue Rechnung herankommt.
+Eine Reederei nimmt Buchungen über Wochen an, aber die Container-Plätze auf dem Schiff sind knapp. Günstige **Spot-Fracht** bucht meist früh, teure **Premium-Fracht** erst kurz vor der Abfahrt. Jede Anfrage muss sofort angenommen oder abgelehnt werden. Wer früh jede Anfrage annimmt, hat am Ende keinen Platz mehr für die teuren Spätbucher. Die Demo vergleicht drei Regeln: Annahme nach Eingang (FCFS), eine einfache Regel nach Littlewood, die Plätze für Premium-Fracht zurückhält, und die genaue Rechnung per dynamischer Programmierung. Gezeigt wird, wie viel Einnahmen die erste Regel verschenkt und wie nah die einfache Littlewood-Regel an die genaue Rechnung herankommt.
 
 [Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/buchungs-slot-vergabe-erklaert.html)
         """
@@ -106,7 +106,7 @@ with st.sidebar:
     st.header("⚙️ Einstellungen")
     capacity = st.slider("Slots (Kapazität)", *bounds("capacity_slider"), key="capacity_slider",
                          help="Wie viele Container-Slots insgesamt vergeben werden.")
-    r_hi_mult = st.select_slider("Premium-Preisaufschlag", options("r_hi_mult_select"), key="r_hi_mult_select",
+    r_hi_mult = st.select_slider("Premium-Preisverhältnis", options("r_hi_mult_select"), key="r_hi_mult_select",
                                  help=f"Vielfaches des Spot-Preises (r_lo={C.R_LO:.0f}); steuert r_hi.")
     demand_mix = st.select_slider("Nachfragemix (Premium/Spot)", options("demand_mix_select"), key="demand_mix_select",
                                   help="premium-arm/ausgewogen/premium-reich - steuert die maximale Ankunftswahrscheinlichkeit je Klasse.")
@@ -156,11 +156,11 @@ st.markdown("---")
 # ---------------------------------------------------------------------------------------------------
 # Kernabschnitt
 # ---------------------------------------------------------------------------------------------------
-st.markdown("### 📐 Wie stark hängt die Lücke von Kapazität und Preisaufschlag ab?")
+st.markdown("### 📐 Wie stark hängt die Lücke von Kapazität und Preisverhältnis ab?")
 st.markdown(
     """
 Kernfrage dieser Demo: wie sehr wächst der Ertragsverlust von FCFS mit knapper werdender Kapazität - und wie nah bleibt Littlewoods geschlossene Formel dabei am DP-Optimum? Balken: FCFS- und
-Littlewood-Aufschlag gegen das DP-Optimum über drei Kapazitätsstufen um den eingestellten Wert.
+Littlewood-Abstand gegen das DP-Optimum über drei Kapazitätsstufen um den eingestellten Wert.
 """
 )
 st.plotly_chart(VZ.capacity_sweep_figure(cap_stats, capacity), width="stretch", key="main_capacity_chart")
@@ -214,7 +214,7 @@ with st.expander("Wie funktioniert diese Demo?"):
 Buchungsgelegenheiten (Epochen); je Epoche kommt mit Wahrscheinlichkeit π_hi(n) eine Premium-Anfrage, mit π_lo(n) eine Spot-Anfrage, sonst keine - beide Wahrscheinlichkeiten wandern über die Epochen
 (Spot früh häufiger, Premium spät häufiger). Jede Anfrage muss **sofort** angenommen oder abgelehnt werden (online), ohne die Zukunft zu kennen.
 
-**Littlewoods Schutzformel und warum sie fast reicht.** Spot wird nur angenommen, wenn die verbleibende Kapazität über dem Schutzniveau für erwartete künftige Premium-Nachfrage liegt (geschlossene
+**Littlewoods Regel und warum sie fast reicht.** Spot wird nur angenommen, wenn die verbleibende Kapazität über dem Schutzniveau für erwartete künftige Premium-Nachfrage liegt (geschlossene
 Formel, 1972). Sie kommt empirisch verblüffend nah ans echte DP-Optimum (in den fünf Presets -0,06 % bis -1,29 %; über das gesamte Reglerraster bei 30 Epochen zwischen etwa +0,1 % und -5 %, am weitesten bei knapper Kapazität und premium-armer Nachfrage) - die eigentliche Botschaft dieser Demo: man braucht fast nie die volle
 Rückwärts-Induktion.
 
